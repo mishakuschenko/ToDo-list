@@ -1,11 +1,9 @@
-from init import app
-from routes import *
+from routes import app, db
 
 if __name__ == "__main__":
-    try:
-        dotenv.load_dotenv()
+    
+    with app.app_context():
+        db.create_all()
         app.debug=True
-        app.run()
-    except:
-        print("ОШИБКА СТАРТА")
+        app.run(port=5555)
 
